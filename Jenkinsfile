@@ -8,7 +8,8 @@ pipeline {
        PRODUCTION = "${ID_DOCKER}-production"
      }
      agent none
-    stage('Build image') {
+    stages {
+         stage('Build image') {
              agent any
              steps {
                 script {
