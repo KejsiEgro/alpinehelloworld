@@ -48,7 +48,7 @@ pipeline {
              script {
                sh '''
                    echo $DOCKERHUB_PASSWORD_PSW | docker login -u $DOCKERHUB_PASSWORD_USR --password-stdin
-                   docker push $DOCKERHUB_PASSWORD_USR/$IMAGE_NAME:$IMAGE_TAG
+                   docker push $IMAGE_NAME/$IMAGE_NAME:$IMAGE_TAG
                '''
              }
           }
