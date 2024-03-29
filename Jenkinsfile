@@ -21,7 +21,8 @@ pipeline {
             steps {
                script {
                  sh '''
-                    echo "Clean Environment"
+                    echo "Clean Environment" 
+                    docker rm -f $IMAGE_NAME || echo "container does not exist"
                     docker run --name $IMAGE_NAME -d -p ${PORT_EXPOSED}:5000 -e PORT=5000 $IMAGE_NAME/$IMAGE_NAME:$IMAGE_TAG
                     sleep 5
                  '''
@@ -38,6 +39,17 @@ pipeline {
               }
            }
       }
+      stage('Clean Container') {
+          agent any
+          steps {
+             script {
+               sh '''
+                 docker stop $IMAGE_NAME
+                 docker rm $IMAGE_NAME
+               '''
+             }
+          }
+     }
 
      stage ('Login and Push Image on docker hub') {
           agent any
