@@ -1,5 +1,5 @@
 pipeline {
-    environment {
+     environment {
        ID_DOCKER = "${ID_DOCKER_PARAMS}"
        IMAGE_NAME = "alpinehelloworld"
        IMAGE_TAG = "latest"
@@ -8,7 +8,7 @@ pipeline {
        PRODUCTION = "${ID_DOCKER}-production"
      }
      agent none
-    stages {
+     stages {
          stage('Build image') {
              agent any
              steps {
@@ -17,7 +17,7 @@ pipeline {
                 }
              }
         }
-       stage('Run container based on builded image') {
+        stage('Run container based on builded image') {
             agent any
             steps {
                script {
