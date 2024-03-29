@@ -22,7 +22,7 @@ pipeline {
                script {
                  sh '''
                     echo "Clean Environment"
-                    docker run --name $IMAGE_NAME -d -p ${PORT_EXPOSED}:5000 -e PORT=5000 $IMAGE_NAME:$IMAGE_TAG
+                    docker run --name $IMAGE_NAME -d -p ${PORT_EXPOSED}:5000 -e PORT=5000 $IMAGE_NAME/$IMAGE_NAME:$IMAGE_TAG
                     sleep 5
                  '''
                }
@@ -48,7 +48,7 @@ pipeline {
              script {
                sh '''
                    echo $DOCKERHUB_PASSWORD_PSW | docker login -u $DOCKERHUB_PASSWORD_USR --password-stdin
-                   docker push $DOCKERHUB_PASSWORD_USR/$IMAGE_NAME:$IMAGE_TAG
+                   docker push $IMAGE_NAME/$IMAGE_NAME:$IMAGE_TAG
                '''
              }
           }
