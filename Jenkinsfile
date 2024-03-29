@@ -1,10 +1,11 @@
 pipeline {
-     environment {
+    environment {
+       ID_DOCKER = "${ID_DOCKER_PARAMS}"
        IMAGE_NAME = "alpinehelloworld"
        IMAGE_TAG = "latest"
 //       PORT_EXPOSED = "80" à paraméter dans le job
-       STAGING = "kejsi-staging"
-       PRODUCTION = "kejsi-production"
+       STAGING = "${ID_DOCKER}-staging"
+       PRODUCTION = "${ID_DOCKER}-production"
      }
      agent none
      stages {
